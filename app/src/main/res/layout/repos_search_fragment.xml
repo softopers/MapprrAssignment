@@ -17,6 +17,8 @@
                 android:id="@+id/search_view_users"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionSearch"
+                android:inputType="textNoSuggestions"
                 app:iconifiedByDefault="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,5 +45,20 @@
             app:icon="@drawable/ic_filter_list_white_24dp"
             app:layout_anchor="@+id/recycler_view_users"
             app:layout_anchorGravity="bottom|end" />
+
+        <include
+            layout="@layout/loading_state"
+            app:resource="@{(Resource) searchResult}"
+            app:callback="@{() -> callback.retry()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
