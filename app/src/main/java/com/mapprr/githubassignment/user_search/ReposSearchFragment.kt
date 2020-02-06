@@ -9,14 +9,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.mapprr.githubassignment.R
 
 
-class UsersSearchFragment : Fragment() {
+class ReposSearchFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            UsersSearchFragment()
+            ReposSearchFragment()
     }
 
-    private lateinit var viewModel: UsersSearchViewModel
+    private lateinit var viewModel: ReposSearchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class UsersSearchFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UsersSearchViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ReposSearchViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
