@@ -22,7 +22,7 @@ class ReposSearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.users_search_fragment, container, false)
+        return inflater.inflate(R.layout.repos_search_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

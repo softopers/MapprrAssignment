@@ -9,5 +9,5 @@
         android:id="@+id/navigation_repos_search"
         android:name="com.mapprr.githubassignment.user_search.ReposSearchFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/users_search_fragment" />
+        tools:layout="@layout/repos_search_fragment" />
 </navigation>
