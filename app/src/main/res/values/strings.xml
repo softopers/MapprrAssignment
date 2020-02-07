@@ -3,5 +3,7 @@
     <string name="fab_filter">Filter</string>
 
     <string name="retry">Retry</string>
+    <string name="empty_search_result">No results for <b>%s</b></string>
+    <string name="unknown_error">Unknown Error</string>
 
 </resources>
