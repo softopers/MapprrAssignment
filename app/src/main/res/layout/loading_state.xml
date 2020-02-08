@@ -18,10 +18,10 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="8dp"
         app:visibleGone="@{resource.data == null}">
 
@@ -34,18 +34,18 @@
             app:visibleGone="@{resource.status == Status.LOADING}" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/retry"
-            android:id="@+id/retry"
             android:layout_marginTop="8dp"
             android:onClick="@{() -> callback.retry()}"
+            android:text="@string/retry"
             app:visibleGone="@{resource.status == Status.ERROR}" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/error_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/error_msg"
             android:layout_marginTop="8dp"
             android:text="@{resource.message ?? @string/unknown_error}"
             app:visibleGone="@{resource.status == Status.ERROR}" />

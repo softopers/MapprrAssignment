@@ -60,8 +60,7 @@ class ReposSearchFragment : Fragment(), Injectable {
         initRecyclerView()
         val rvAdapter = RepoListAdapter(
             dataBindingComponent = dataBindingComponent,
-            appExecutors = appExecutors,
-            showFullName = true
+            appExecutors = appExecutors
         ) { repo ->
             //            findNavController().navigate(
 //                SearchFragmentDirections.showRepo(repo.owner.login, repo.name)
@@ -93,7 +92,6 @@ class ReposSearchFragment : Fragment(), Injectable {
                 return false
             }
         })
-
     }
 
     private fun doSearch(query: String) {
