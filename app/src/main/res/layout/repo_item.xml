@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="showFullName"
+            type="boolean" />
+
+        <variable
             name="repo"
             type="com.mapprr.githubassignment.vo.Repo" />
     </data>
@@ -13,8 +17,10 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardUseCompatPadding="true">
+        android:layout_marginBottom="4dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,21 +30,55 @@
                 android:id="@+id/text_view_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{repo.name}"
+                android:layout_marginStart="16dp"
+                android:text="@{showFullName ? repo.fullName : repo.name}"
+                android:textColor="@color/abc_primary_text_material_light"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_view_owner_avatar"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="repository name" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_view_full_name"
+                android:id="@+id/text_view_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{repo.fullName}"
+                android:layout_marginTop="8dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="@{repo.description}"
+                android:textColor="@color/abc_secondary_text_material_light"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_name"
                 tools:text="repository name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_star_black_20dp"
+                android:drawablePadding="8dp"
+                android:ellipsize="marquee"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="@{`` + repo.stars}"
+                android:textColor="@color/abc_secondary_text_material_light"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_desc"
+                tools:text="15" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_owner_avatar"
+                android:layout_width="48dp"
+                android:layout_height="0dp"
+                app:imageUrl="@{repo.owner.avatarUrl}"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

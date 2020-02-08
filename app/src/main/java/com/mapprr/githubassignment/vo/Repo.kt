@@ -27,14 +27,15 @@ data class Repo(
     @field:Embedded(prefix = "owner_")
     val owner: Owner,
     @field:SerializedName("stargazers_count")
-    val stars: Int
-) {
+    val stars: Int) {
 
     data class Owner(
         @field:SerializedName("login")
         val login: String,
         @field:SerializedName("url")
-        val url: String?
+        val url: String?,
+        @field:SerializedName("avatar_url")
+        val avatarUrl: String?
     )
 
     companion object {

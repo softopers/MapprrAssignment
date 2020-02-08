@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mapprr.githubassignment.vo.Status" />
+
+        <import type="com.mapprr.githubassignment.vo.Resource" />
+
+        <import type="androidx.lifecycle.LiveData" />
+
+        <import type="com.mapprr.githubassignment.vo.User" />
+
+        <import type="com.bumptech.glide.request.RequestListener" />
+
+        <import type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="args"
+            type="com.mapprr.githubassignment.ui.user.UserFragmentArgs" />
+
+        <variable
+            name="userResource"
+            type="Resource" />
+
+        <variable
+            name="user"
+            type="LiveData&lt;Resource&lt;User>>" />
+
+        <variable
+            name="retryCallback"
+            type="com.mapprr.githubassignment.ui.common.RetryCallback" />
+
+        <variable
+            name="imageRequestListener"
+            type="com.bumptech.glide.request.RequestListener&lt;Drawable>" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_contributor_avatar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_margin="16dp"
+            android:background="@mipmap/ic_launcher"
+            android:scaleType="centerCrop"
+            app:imageRequestListener="@{imageRequestListener}"
+            app:imageUrl="@{user.data.avatarUrl ?? args.avatarUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:transitionName="@{args.login}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_contributor_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="22sp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/abc_primary_text_material_light"
+            android:text="@{user.data.name ?? user.data.login}"
+            app:layout_constraintStart_toStartOf="@+id/image_view_contributor_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_contributor_avatar"
+            app:visibleGone="@{user.data != null}"
+            tools:text="albert einstein" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repo_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_contributor_name"
+            tools:listitem="@layout/repo_item" />
+
+        <include
+            layout="@layout/loading_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:callback="@{() -> retryCallback.retry()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:resource="@{(Resource) user}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

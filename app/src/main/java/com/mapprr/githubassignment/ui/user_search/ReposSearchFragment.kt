@@ -1,6 +1,7 @@
 package com.mapprr.githubassignment.ui.user_search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.mapprr.githubassignment.AppExecutors
 import com.mapprr.githubassignment.R
 import com.mapprr.githubassignment.binding.FragmentDataBindingComponent
@@ -60,11 +62,12 @@ class ReposSearchFragment : Fragment(), Injectable {
         initRecyclerView()
         val rvAdapter = RepoListAdapter(
             dataBindingComponent = dataBindingComponent,
-            appExecutors = appExecutors
+            appExecutors = appExecutors,
+            showFullName = true
         ) { repo ->
-            //            findNavController().navigate(
-//                SearchFragmentDirections.showRepo(repo.owner.login, repo.name)
-//            )
+            findNavController().navigate(
+                ReposSearchFragmentDirections.showRepo(repo.owner.login, repo.name)
+            )
         }
         binding.query = reposSearchViewModel.query
         binding.recyclerViewRepoList.adapter = rvAdapter
@@ -89,6 +92,9 @@ class ReposSearchFragment : Fragment(), Injectable {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText == "") {
+                    doSearch(newText)
+                }
                 return false
             }
         })

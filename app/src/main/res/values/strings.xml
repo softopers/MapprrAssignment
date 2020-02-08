@@ -6,4 +6,11 @@
     <string name="empty_search_result">No results for <b>%s</b></string>
     <string name="unknown_error">Unknown Error</string>
 
+    <string name="repo_full_name"><b>%s</b>/%s</string>
+    <string name="navigation_repo_details">Repo details</string>
+    <string name="github_link">https://github.com/%s/%s</string>
+
+    <string name="navigation_contributor">Contributor</string>
+    <string name="contributors">Contributors:</string>
+
 </resources>

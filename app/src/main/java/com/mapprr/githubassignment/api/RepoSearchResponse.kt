@@ -14,6 +14,4 @@ data class RepoSearchResponse(
     val total: Int = 0,
     @SerializedName("items")
     val items: List<Repo>
-) {
-    var nextPage: Int? = null
-}
+)

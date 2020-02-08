@@ -48,19 +48,29 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:queryHint="search repositories" />
+                app:queryHint="Search repositories" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_repo_list"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                app:layoutManager="LinearLayoutManager"
+                android:layout_marginTop="8dp"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_view_repos"
-                tools:listitem="@layout/repo_item" />
+                app:layout_constraintTop_toBottomOf="@+id/search_view_repos">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_repo_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="72dp"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:listitem="@layout/repo_item" />
+            </FrameLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/no_results_text"
@@ -95,8 +105,7 @@
             android:fontFamily="@font/lato_bold"
             android:text="@string/fab_filter"
             app:icon="@drawable/ic_filter_list_white_24dp"
-            app:layout_anchor="@+id/recycler_view_repo_list"
-            app:layout_anchorGravity="bottom|end"
+            android:layout_gravity="bottom|end"
             app:visibleGone="@{searchResult.status == Status.SUCCESS &amp;&amp; searchResult.data.size != 0}" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

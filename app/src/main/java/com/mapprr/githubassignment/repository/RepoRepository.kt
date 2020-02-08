@@ -90,7 +90,7 @@ class RepoRepository @Inject constructor(
                             name = name,
                             fullName = "$owner/$name",
                             description = "",
-                            owner = Repo.Owner(owner, null),
+                            owner = Repo.Owner(owner, null, null),
                             stars = 0
                         )
                     )
@@ -116,8 +116,7 @@ class RepoRepository @Inject constructor(
                 val repoSearchResult = RepoSearchResult(
                     query = query,
                     repoIds = repoIds,
-                    totalCount = item.total,
-                    next = item.nextPage
+                    totalCount = item.total
                 )
                 db.runInTransaction {
                     repoDao.insertRepos(item.items)
@@ -142,9 +141,7 @@ class RepoRepository @Inject constructor(
 
             override fun processResponse(response: ApiSuccessResponse<RepoSearchResponse>)
                     : RepoSearchResponse {
-                val body = response.body
-                body.nextPage = response.nextPage
-                return body
+                return response.body
             }
         }.asLiveData()
     }

@@ -16,6 +16,7 @@ import com.mapprr.githubassignment.vo.Repo
 class RepoListAdapter(
     private val dataBindingComponent: DataBindingComponent,
     appExecutors: AppExecutors,
+    private val showFullName: Boolean,
     private val repoClickCallback: ((Repo) -> Unit)?
 ) : DataBoundListAdapter<Repo, RepoItemBinding>(
     appExecutors = appExecutors,
@@ -40,6 +41,7 @@ class RepoListAdapter(
             false,
             dataBindingComponent
         )
+        binding.showFullName = showFullName
         binding.root.setOnClickListener {
             binding.repo?.let {
                 repoClickCallback?.invoke(it)

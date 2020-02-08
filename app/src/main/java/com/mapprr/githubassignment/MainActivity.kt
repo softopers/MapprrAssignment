@@ -29,4 +29,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     }
 
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
+
+    override fun onSupportNavigateUp() =
+        findNavController(R.id.nav_host_fragment).navigateUp()
 }
