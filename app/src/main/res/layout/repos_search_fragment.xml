@@ -96,16 +96,5 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:resource="@{(Resource) searchResult}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/fab_filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:fontFamily="@font/lato_bold"
-            android:text="@string/fab_filter"
-            app:icon="@drawable/ic_filter_list_white_24dp"
-            android:layout_gravity="bottom|end"
-            app:visibleGone="@{searchResult.status == Status.SUCCESS &amp;&amp; searchResult.data.size != 0}" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

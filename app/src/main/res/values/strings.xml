@@ -12,5 +12,6 @@
 
     <string name="navigation_contributor">Contributor</string>
     <string name="contributors">Contributors:</string>
+    <string name="dialog_title_lang">Languages</string>
 
 </resources>

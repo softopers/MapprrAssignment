@@ -17,6 +17,7 @@ class RepoListAdapter(
     private val dataBindingComponent: DataBindingComponent,
     appExecutors: AppExecutors,
     private val showFullName: Boolean,
+    private val showContributorImage: Boolean,
     private val repoClickCallback: ((Repo) -> Unit)?
 ) : DataBoundListAdapter<Repo, RepoItemBinding>(
     appExecutors = appExecutors,
@@ -42,6 +43,7 @@ class RepoListAdapter(
             dataBindingComponent
         )
         binding.showFullName = showFullName
+        binding.showContributorImage = showContributorImage
         binding.root.setOnClickListener {
             binding.repo?.let {
                 repoClickCallback?.invoke(it)

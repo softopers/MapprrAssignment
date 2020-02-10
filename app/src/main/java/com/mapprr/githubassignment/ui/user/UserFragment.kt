@@ -88,7 +88,8 @@ class UserFragment : Fragment(), Injectable {
         val rvAdapter = RepoListAdapter(
             dataBindingComponent = dataBindingComponent,
             appExecutors = appExecutors,
-            showFullName = false
+            showFullName = false,
+            showContributorImage = false
         ) { repo ->
             findNavController().navigate(UserFragmentDirections.showRepo(repo.owner.login, repo.name))
         }

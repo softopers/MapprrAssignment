@@ -10,6 +10,10 @@
             type="boolean" />
 
         <variable
+            name="showContributorImage"
+            type="boolean" />
+
+        <variable
             name="repo"
             type="com.mapprr.githubassignment.vo.Repo" />
     </data>
@@ -30,7 +34,6 @@
                 android:id="@+id/text_view_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="@{showFullName ? repo.fullName : repo.name}"
                 android:textColor="@color/abc_primary_text_material_light"
                 android:textSize="20sp"
@@ -75,7 +78,10 @@
                 android:id="@+id/image_view_owner_avatar"
                 android:layout_width="48dp"
                 android:layout_height="0dp"
+                visibleGone="@{showContributorImage}"
+                android:layout_marginEnd="16dp"
                 app:imageUrl="@{repo.owner.avatarUrl}"
+                app:layout_constraintEnd_toStartOf="@+id/text_view_name"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

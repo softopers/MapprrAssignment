@@ -1,10 +1,10 @@
 package com.mapprr.githubassignment.ui.user_search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
@@ -21,6 +21,7 @@ import com.mapprr.githubassignment.di.Injectable
 import com.mapprr.githubassignment.ui.common.RepoListAdapter
 import com.mapprr.githubassignment.ui.common.RetryCallback
 import com.mapprr.githubassignment.util.autoCleared
+import com.mapprr.githubassignment.vo.Repo
 import javax.inject.Inject
 
 
@@ -63,7 +64,8 @@ class ReposSearchFragment : Fragment(), Injectable {
         val rvAdapter = RepoListAdapter(
             dataBindingComponent = dataBindingComponent,
             appExecutors = appExecutors,
-            showFullName = true
+            showFullName = true,
+            showContributorImage = true
         ) { repo ->
             findNavController().navigate(
                 ReposSearchFragmentDirections.showRepo(repo.owner.login, repo.name)
